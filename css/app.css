@@ -1,0 +1,295 @@
+main
+{
+	padding: 0 2em;
+}
+[type=text], [type=password], [type=date], [type=datetime], [type=datetime-local], [type=month], [type=week], [type=email], [type=number], [type=search], [type=tel], [type=time], [type=url], [type=color], textarea
+{
+	width: auto;
+	display: inline-block;
+}
+
+.top-bar
+{
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
+}
+
+.top-bar, .top-bar ul {
+	background-color: black;
+	color: white;
+}
+.top-bar a
+{
+	color: #44EE44;
+}
+.top-bar a:hover,
+.top-bar a:active,
+.top-bar a:link.home-link,
+.top-bar a:visited.home-link
+{
+	color: white;
+}
+.dropdown.menu .is-dropdown-submenu-parent.is-down-arrow>a::after 
+{
+	border-color: #44EE44 transparent transparent;
+}
+.dropdown.menu .is-dropdown-submenu-parent.is-down-arrow>a:hover::after,
+.dropdown.menu .is-dropdown-submenu-parent.is-down-arrow>a:active::after
+{
+	border-color: white transparent transparent;
+}
+.dropdown.menu .submenu 
+{
+	background-color: black;
+	border-color: black;
+}
+@media screen and (min-width: 40em) {
+	.content
+	{
+		padding-top: 4em;
+	}
+}
+.callout 
+{
+	margin: 1em 2em;
+	padding: 1em 2em;
+}
+.dropdown.menu .is-dropdown-submenu-parent.opens-left .submenu.help
+{
+	right: 0;
+}
+
+.equation
+{
+	font-size: 1.6em;	
+}
+
+label.m,
+label.massType,
+label.halfLife,
+label.halfLifeIncrement,
+label.with-units,
+.groundwaterStep label.c0
+{
+	width: 8em;
+	display: inline-block;
+}
+
+label.with-units,
+.groundwaterStep label.c0
+{
+	width: 10em;
+}
+.timeType
+{
+	width: 8em;
+}
+.groundwaterPulse label.massType
+{
+	width: 12em;
+}
+
+.riverPulse .concentrations 
+{	
+	font-size: 0.9em;
+}
+.riverPulse .concentrations .one strong,
+.timeOne 
+{
+	color: #BF6083;
+}
+.riverPulse .concentrations .two strong,
+.timeTwo 
+{
+	color: #1197B4;
+}
+.riverPulse .concentrations .three strong,
+.timeThree 
+{
+	color: #A69F3F;
+}
+.riverPulse .concentrations .four strong,
+.timeFour 
+{
+	color: #D94F30;
+}
+
+.graphWrapper
+{
+	margin-left: 1.5em;
+	margin-right: 1em;
+}
+.jxgbox
+{
+	width: 100%;
+	height: 300px;
+
+	top: 0;
+	left: 0;
+}
+.jxgbox [id$="navigationbar"]
+{
+	background-color: black !important;
+	color: #44EE44 !important;
+}
+.jxgbox [id$="navigationbar"]
+{
+	background-color: black !important;
+	color: #44EE44 !important;
+}
+.jxgbox [id$="navigationbar"] span:hover
+{
+	background-color: black !important;
+	color: white !important;
+}
+.JXGinfobox
+{
+	color: black !important;
+	z-index: 100 !important;
+}
+#SXGraph.jxgbox [id$="navigationbar"],
+#SZGraph.jxgbox [id$="navigationbar"]
+{
+	margin-bottom: 2em;
+	display: none;
+}
+h2 .MathJax_Display
+{
+	display: inline-block !important;
+	width: 70%;
+	float: right;
+}
+.relative
+{
+	position: relative;
+}
+.y-axis-label
+{
+	position: absolute;
+	top: 0;
+	white-space: nowrap;
+	width: 1em;
+	padding-top: 260px;
+	padding: 0;
+	transform: rotate(-90deg) translate(-210px, 0);
+	
+}
+
+/* three point problem */
+.groundwaterThreePoint fieldset.well1
+{
+	border-color: blue;
+}
+.groundwaterThreePoint fieldset.well2
+{
+	border-color: purple;
+}
+.groundwaterThreePoint fieldset.well3
+{
+	border-color: red;
+}
+.map 
+{
+ width: 520px;
+ height: 520px;
+}
+.map .canvas
+{
+	background-color: #cccccc;
+	width: 500px;
+	height: 500px;
+	display: inline-block;
+}
+.map .y-axis
+{
+	height: 20px;
+	width: 520px;
+	display: inline-block;
+	transform: rotate(90deg) translate(-260px, -260px);
+}
+.map .well
+{
+	width: 50px;
+	height: 50px;
+	background-color: blue;
+	color: white;
+	font-size: 2em;
+	text-align: center;
+}
+.map #well-2
+{
+	background-color: purple;
+}
+.map #well-3
+{
+	background-color: red;
+}
+.map .arrow 
+{
+	width: 80px;
+	height: 80px;
+	font-size: 3em;
+	position: relative;
+	left: 200px;
+	top: 50px;
+	text-align: center;
+}
+/* Air Pulse Specific */
+.airPlume .s-values,
+.airPuff .s-values
+{
+	font-size: 0.8em;
+}
+.airPlume .s-values div,
+.airPuff .s-values div
+{
+	height: 4em;
+}
+.airPlume .a-value,
+.airPuff .a-value
+{
+	color: #BF6083;
+}
+.airPlume .b-value,
+.airPuff .b-value
+{
+	color: #1197B4;
+}
+.airPlume .c-value,
+.airPuff .c-value
+{
+	color: #A69F3F;
+}
+.airPlume .d-value
+{
+	color: #D94F30;
+}
+.airPlume .e-value,
+{
+	color: #4d4698;
+}
+.airPlume .f-value
+{
+	color: #8e3500;
+}
+
+.y-man
+{
+	text-align: center;
+	position: absolute;
+	width: 100%;
+	top: 245px;
+}
+.z-man
+{
+	text-align: center;
+	position: absolute;
+	width: 100%;
+	top: 245px;
+}
+.z-man img
+{
+	transform: rotate(90deg);
+}
+/* Air Puff */

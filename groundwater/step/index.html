@@ -1,0 +1,206 @@
+---
+layout: default
+title: Step Release into Groundwater
+name: groundwater_step
+---
+
+<div class="groundwaterStep">
+	<div class="row">
+		<div class="small-12 small columns">
+			<h1>{{ page.title }}</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-11 small columns">
+			<p>
+				This section of Fate will aid you in the conceptual understanding of how a constant source of pollution will flow in an isotropic or homogeneous aquifer.  Inn addition, this model allows for the first order degradation of a pollutant.  A leaky landfill is an excellent example of the concept demonstrated by this module.
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+			<form class="groundwater-step-form fate-form" action="../../groundwater/step/" method="get" id="groundwater-step-form" accept-charset="UTF-8">
+				<fieldset class="fieldset">
+					<legend> Step 1</legend> Manually convert input data to metric units: meters, kilograms, or curies.
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Step 2: Calculate or enter the porosity of the aquifer</legend>
+					<label for="nMethod" class="nMethod">
+					<select id="nMethod" name="nMethod" class="nMethod">
+						<option value="calculated" selected="selected">Use Calculated Porosity</option>
+						<option value="entered">Use Entered Porosity</option>
+					</select>
+					</label>
+					<div class="calculated-n">
+						<label for="bulkDensity" class="required">Bulk Density <br />
+						&rho;<sub>b</sub> =
+						<input type="text" id="bulkDensity" name="bulkDensity" value="0.8" size="5" maxlength="128" class="bulkDensity required" required="required" aria-required="true" />
+						g/cm<sup>3</sup></label>
+						<label for="solidsDensity" class="required">Solids Density <br />
+						&rho;<sub>s</sub> =
+						<input type="text" id="solidsDensity" name="solidsDensity" value="2.65" size="5" maxlength="128" class="solidsDensity required" required="required" aria-required="true" />
+						g/cm<sup>3</sup></label>
+						\[ n = 1 - \frac{&rho;_b}{&rho;_s}* 100% \]
+						<label for="nCalculated" class="verify">Porosity <br />
+						n =
+						<strong class="nCalculated"></strong>
+						% </label>
+					</div>
+					<div class="entered-n">
+						<label for="nEntered" class="nEntered required">Porosity <br />
+						n =
+						<input type="text" id="nEntered" name="nEntered" value="30" size="5" maxlength="128" class="nEntered required" required="required" aria-required="true" />
+						% </label>
+					</div>
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Step 3: Calculate or enter the retardation factor</legend>
+					<label for="rMethod" class="rMethod">
+					<select id="rMethod" name="rMethod" class="rMethod">
+						<option value="calculated" selected="selected">Use calculated retardation factor</option>
+						<option value="entered">Use entered retardation factor</option>
+					</select>
+					</label>
+					<div class="calculated-r">
+						<label for="kd" class="required">Distribution Coefficient<br />
+						K<sub>d</sub> =
+						<input type="text" id="kd" name="kd" value="10" size="5" maxlength="128" class="kd required" required="required" aria-required="true" />
+						cm<sup>3</sup>/g</label>
+						<label for="bulkDensity" class="required">Bulk Density <br />
+						&rho;<sub>b</sub> =
+						<input type="text" id="bulkDensity" name="bulkDensity" value="0.8" size="5" maxlength="128" class="bulkDensity required" required="required" aria-required="true" />
+						g/cm<sup>3</sup></label>
+						<label for="n" class="verify">Porosity <br />
+						n =
+						<strong class="n"></strong>%
+						</label>
+						\[ R = 1 + \frac{&rho;_bK_d}{n/100%}\]
+						<label for="rCalculated" class="verify">Retardation factor <br />
+						R =
+						<strong class="rCalculated"></strong>
+						(unitless) </label>
+					</div>
+					<div class="entered-r">
+						<label for="rEntered" class="rEntered required">Retardation factor <br />
+						R =
+						<input type="text" name="rEntered" id="rEntered" class="rEntered" value="27.5" required="required" aria-required="true" />
+						(unitless) </label>
+					</div>
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Step 4: Calculate first order rate constant</legend>
+					<div class="row">
+					<div class="medium-5 columns">
+					<label for="halfLife" class="halfLife required">Half-Life<br />
+					<input type="text" id="halfLife" name="halfLife" value="27.7" size="5" maxlength="128" class="halfLife required" required="required" aria-required="true" />
+					</label>
+					<label for="halfLifeIncrement" class="halfLifeIncrement">
+					<select id="halfLifeIncrement" name="halfLifeIncrement" class="halfLifeIncrement">
+						<option value="year" selected="selected" />Years</option>
+						<option value="day">Days</option>
+						<option value="hour">Hours</option>
+						<option value="minute">Minutes</option>
+					</select>
+					</label>
+					</div>
+					<div class="medium-4 columns end">
+						<!-- \[ k = -\frac{ln(\frac{C}{C_0})}{t_1 v_2} \] -->
+						\[ln(\frac{C}{C_o}) = -kt_\frac{1}{2} \]
+					</div>
+					</div>
+					<p class="verify">k = <strong class="k"></strong>/year
+					</p>
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Step 4: Enter the remaining data</legend>
+
+
+
+					<label for="c0" class="c0 required">Initial concentration<br />
+					C<sub>0</sub> =
+					<input type="text" id="c0" name="c0" value="100" size="5" maxlength="128" class="c0 required" required="required" aria-required="true" />
+					</label>
+					<label for="massType" class="massType">
+						<select id="massType" name="massType" class="massType">
+							<option value="g" selected="selected">&mu;g/L</option>
+							<option value="Ci">&mu;Ci/L</option>
+						</select>
+					</label>
+					<label for="d" class="required">Longitudinal dispersivity<br />
+					&alpha;<sub>x</sub> =
+					<input type="text" id="d" name="d" value="10" size="5" maxlength="128" class="d required" required="required" aria-required="true" />
+					m</label>
+
+					<label for="v" class="required">Linear water velocity <br />
+					v =
+					<input type="text" id="v" name="v" value="10" size="5" maxlength="128" class="v required" required="required" aria-required="true" />
+					m/year</label>
+					<label for="k" class="verify">First order rate constant<br />
+					k = <strong class="k"></strong> /year
+					</label>
+					<label for="r" class="verify">Retardation factor<br />
+					R = <strong class="r"></strong>
+					</label>
+				</fieldset>
+
+				<fieldset class="fieldset">
+					<legend> Point calculation</legend>
+					<label for="concentrationDistance" class="concentrationDistance required">Distance <br />
+					<input type="text" id="concentrationDistance" name="concentrationDistance" value="10" size="5" maxlength="128" class="concentrationDistance required" required="required" aria-required="true" />
+					Meters </label> <label for="concentrationTime" class="concentrationTime required">Time <br />
+					<input type="text" id="concentrationTime" name="concentration time" value="10" size="5" maxlength="128" class="concentrationTime required" required="required" aria-required="true" />
+					Years </label>
+					<p class="verify">
+						Result: <strong class="calc-result"></strong>
+					</p>
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Graph varying time</legend> <label for="graphDistanceVaryTime" class="graphDistanceVaryTime required">Distance (fixed) <br />
+					<input type="text" id="graphDistanceVaryTime" name="graphDistanceVaryTime" value="10" size="5" maxlength="128" class="graphDistanceVaryTime required" required="required" aria-required="true" />
+					meters </label>
+					<div class="equation">
+						\[C_{(x,t)} = \frac{C_0}{2}(e^{(\frac{x}{2&alpha;_x})(1-(1+\frac{4kR&alpha;_x}{v})^\frac{1}{2})} (erfc(\frac{x-(\frac{v}{R}t(1+\frac{4kR&alpha;_x}{v})^\frac{1}{2}}{2(&alpha;_x\frac{v}{R}t)^{\frac{1}{2}}}))\]
+					</div>
+					<div class="row relative">
+						<div class="graphWrapper">
+							<div id="varyingTimeGraph" class="jxgbox">
+							</div>
+						</div>
+						<div class="y-axis-label varyingTimeGraph">
+						</div>
+					</div>
+					<div class="row">
+						<div class="x-axis-label varyingTimeGraph columns small-10 small-offset-2">
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset class="fieldset">
+				<legend> Graph varying distance</legend> <label for="graphTimeVaryDistance" class="graphTimeVaryDistance required">Time <br />
+				<input type="text" id="graphTimeVaryDistance" name="graphTimeVaryDistance" value="10" size="5" maxlength="128" class="graphTimeVaryDistance required" required="required" aria-required="true" />
+				Hours </label>
+				<div class="equation">
+					\[C_{(x,t)} = \frac{C_0}{2}(e^{(\frac{x}{2&alpha;_x})(1-(1+\frac{4kR&alpha;_x}{v})^\frac{1}{2})} (erfc(\frac{x-(\frac{v}{R}t(1+\frac{4kR&alpha;_x}{v})^\frac{1}{2}}{2(&alpha;_x\frac{v}{R}t)^{\frac{1}{2}}}))\]
+				</div>
+				<div class="row relative">
+					<div class="graphWrapper">
+						<div id="varyingDistanceGraph" class="jxgbox">
+						</div>
+					</div>
+					<div class="y-axis-label varyingDistanceGraph">
+					</div>
+				</div>
+				<div class="row">
+					<div class="x-axis-label varyingDistanceGraph columns small-10 small-offset-2">
+					</div>
+				</div>
+			</div>
+		</fieldset>
+
+</form>
+</div>
+</div>
+</div>
+
+{% include js.html %}
+<script src="groundwaterStep.js"></script>
