@@ -1,1 +1,3 @@
-Educational Solutions LLC
+Fate is companion software for environmental chemistry textbooks written by Frank Dunnivant. [A Basic Introduction to Pollutant Fate and Transport: An Integrated Approach with Chemistry, Modeling, Risk Assessment, and Environmental Legislation](http://www.wiley.com/WileyCDA/WileyTitle/productCd-0471651281.html) and [Environmental Laboratory Exercises for Instrumental Analysis and Environmental Chemistry](http://www.wiley.com/WileyCDA/WileyTitle/productCd-0471488569.html) are published by John Wiley & Sons, Inc.  The Fate software is written and maintained by Elliot Anders.
+
+Fate allows you to estimate concentrations of pollutants in various environments.  You can choose your section from the menu at the top of the page.
