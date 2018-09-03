@@ -1,0 +1,258 @@
+---
+layout: default
+title: Instantaneous Release into the Air
+---
+
+<div class="airPuff">
+	<div class="row">
+		<div class="small-12 small columns">
+			<h1>{{ page.title }}</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-11 small columns">
+			<p>
+				The three dimensional nature of our atmosphere often makes tracking airborne pollutants very difficult.  This section of Fate allows you to estimate the concentration of a pollutant at a specific distance downwind from an instantaneous release of pollutant.  An example of a source that might release this type of pollutant puff is the explosion of an ammonia tank.
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+			<form class="air-puff-form fate-form" action="../../air/puff/" method="get" id="air-puff-form" accept-charset="UTF-8">
+				<fieldset class="fieldset">
+					<legend> Step 1</legend> Manually convert input data to metric units: meters, grams, and seconds.
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Step 2: Enter conditions</legend>
+					<label for="qt" class="qt required">Source mass<br />
+					Q<sub>T</sub> =
+					<input type="text" id="qt" name="qt" value="2000" size="9" maxlength="128" class="qt required" required="required" aria-required="true" />
+					g</label>
+					<label for="u" class="u required">Wind speed<br />
+					&umacr; =
+					<input type="text" id="u" name="u" value="4" size="9" maxlength="128" class="u required" required="required" aria-required="true" />
+					m/sec</label>
+					<label for="hr" class="hr required">Height of release<br />
+					H<sub>r</sub> =
+					<input type="text" id="hr" name="hr" value="30" size="9" maxlength="128" class="hr required" required="required" aria-required="true" />
+					m</label>
+
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Step 3: Choose atmospheric stability</legend>
+						<div class="row">
+							<div class="columns small-6">
+								<label for="as" class="as required">Atmospheric stability<br />
+									<select id="as" name="as" class="as">
+										<option value="a"/>A</option>
+										<option value="b">B</option>
+										<option value="c">C</option>
+										<option value="d" selected="selected">D</option>
+										<option value="e">E</option>
+										<option value="f">F</option>
+									</select>
+								</label>
+							</div>
+							<div class="columns small-6">
+								<p>
+									A, B = Unstable<br />
+									C, D = Neutral<br />
+									E, F = Stable
+								</p>
+							</div>
+						</div>
+					<table>
+					<thead>
+						<tr>
+							<th></th>
+							<th colspan="3">Day Radiation Intensity</th>
+							<th colspan="2">Night Cloud Cover</th>
+						</tr>
+						<tr>
+							<th>Wind Speed (m/s)</th>
+							<th>Strong</th>
+							<th>Medium</th>
+							<th>Slight</th>
+							<th>Cloudy</th>
+							<th>Calm and Clear</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>< 2</td>
+							<td>A</td>
+							<td>A-B</td>
+							<td>B</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>2-3</td>
+							<td>A-B</td>
+							<td>B</td>
+							<td>C</td>
+							<td>E</td>
+							<td>F</td>
+						</tr>
+						<tr>
+							<td>3-5</td>
+							<td>B</td>
+							<td>B-C</td>
+							<td>C</td>
+							<td>D</td>
+							<td>E</td>
+						</tr>
+						<tr>
+							<td>5-6</td>
+							<td>C</td>
+							<td>C-D</td>
+							<td>D</td>
+							<td>D</td>
+							<td>D</td>
+						</tr>
+						<tr>
+							<td>> 6</td>
+							<td>C</td>
+							<td>D</td>
+							<td>D</td>
+							<td>D</td>
+							<td>D</td>
+						</tr>
+					</tbody>
+					</table>
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Step 4: Enter the dispersion coefficients</legend>
+					<label for="dist" class="dist required">
+					X =
+					<input type="text" id="dist" name="dist" value="10" size="5" maxlength="128" class="dist required" required="required" aria-required="true" /> m
+					</label>
+					<label for="dx" class="dx required">
+					&sigma;<sub>x</sub> =
+					<input type="text" id="dx" name="dx" value="0.7517" size="5" maxlength="128" class="dx required" required="required" aria-required="true" /> m
+					(&sigma;<sub>x</sub> = &sigma;<sub>y</sub>)
+					</label>
+					<label for="dz" class="dz required">
+					&sigma;<sub>z</sub> =
+					<input type="text" id="dz" name="dz" value="0.4990" size="5" maxlength="128" class="dz required" required="required" aria-required="true" /> m
+					</label>
+					<div class="row relative">
+						<div class="columns medium-6">
+              <h4 class="text-center">Horizontal</h4>
+							<div class="graphWrapper">
+								<div id="SXGraph" class="jxgbox"></div>
+							</div>
+								<div class="y-axis-label SXGraph"></div>
+						</div>
+
+						<div class="columns medium-6">
+						  <h4 class="text-center">Vertical</h4>
+							<div class="graphWrapper">
+								<div id="SZGraph" class="jxgbox"></div>
+							</div>
+								<div class="y-axis-label SZGraph"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="x-axis-label SXGraph columns medium-5 medium-offset-1">
+						</div>
+						<div class="x-axis-label SZGraph columns medium-5 medium-offset-1">
+						</div>
+					</div>
+					<div class="row s-values">
+						<div class="a-value SXGraph columns small-2">Unstable:
+						</div>
+						<div class="c-value SXGraph columns small-2">Neutral:
+						</div>
+						<div class="e-value SXGraph columns small-2">Stable:
+						</div>
+						<div class="a-value SZGraph columns small-2">Unstable:
+						</div>
+						<div class="c-value SZGraph columns small-2">Neutral:
+						</div>
+						<div class="e-value SZGraph columns small-2">Stable:
+						</div>
+					</div>
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Concentration calculations</legend>
+					<div class="row">
+						<div class="columns small-6">
+							<p class="verify">Time since release: <strong class="t"></strong> seconds
+							</p>
+						</div>
+						<div class="columns small-6">
+							\[ T = \frac{x}{&umacr;} \]
+						</div>
+					</div>
+					<label for="concentrationY" class="concentrationY required">Distance left or right of source <br />
+					Y = <input type="text" id="concentrationY" name="concentrationY" value="1.5" size="5" maxlength="128" class="concentrationY required" required="required" aria-required="true" />m
+					</label>
+					<label for="concentrationZ" class="concentrationZ required">Distance up or down from source <br />
+					Z = <input type="text" id="concentrationZ" name="concentrationZ" value="30" size="5" maxlength="128" class="concentrationZ required" required="required" aria-required="true" />m
+					</label>
+
+					<p>
+						Result: <strong class="calc-result"></strong> g/m<sup>3</sup>
+					</p>
+				</fieldset>
+				<!--
+				<fieldset class="fieldset">
+				  <legend> Update Plots</legend>
+				  <p>Because the air calculations can be somewhat intense and sometimes hang the interface, we don't replot on demand.  If you would like to see updated plots, click this fun button:</p>
+				  <input type="submit" value="Update Plots" class="update-plots" />
+				</fieldset>
+				-->
+				<fieldset class="fieldset">
+					<legend> Graph varying distance in Y</legend>
+					<label for="graphZ" class="graphZ required">Distance up or down from source <br />
+					Z = <input type="text" id="graphZ" name="graphZ" value="30" size="5" maxlength="128" class="graphZ required" required="required" aria-required="true" />m
+					</label>
+					<div class="equation">
+						\[C_{(x,y,z,t)} = \frac{Q_T}{(2\pi)^{\frac{3}{2}}\sigma_x\sigma_y\sigma_z}e^{(-\frac{1}{2}(\frac{y}{\sigma_y})^2)}(e^{(-\frac{1}{2}(\frac{z-H_r}{\sigma_z})^2)}+e^{(-\frac{1}{2}(\frac{z+H_r}{\sigma_z})^2)}) \]
+					</div>
+
+					<div class="row relative">
+						<div class="graphWrapper">
+							<div id="varyingYGraph" class="jxgbox">
+							</div>
+						</div>
+						<div class="y-man"><img src="../../images/man.png" /></div>
+						<div class="y-axis-label varyingYGraph">
+						</div>
+					</div>
+					<div class="row">
+						<div class="x-axis-label varyingYGraph columns small-10 small-offset-2">
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset class="fieldset">
+					<legend> Graph varying distance in Z</legend>
+					<label for="graphY" class="graphY required">Distance left or right of source <br />
+					Y = <input type="text" id="graphY" name="graphY" value="1.5" size="5" maxlength="128" class="graphY required" required="required" aria-required="true" />m
+					</label>
+					<div class="equation">
+						\[C_{(x,y,z,t)} = \frac{Q_T}{(2\pi)^{\frac{3}{2}}\sigma_x\sigma_y\sigma_z}e^{(-\frac{1}{2}(\frac{y}{\sigma_y})^2)}(e^{(-\frac{1}{2}(\frac{z-H_r}{\sigma_z})^2)}+e^{(-\frac{1}{2}(\frac{z+H_r}{\sigma_z})^2)}) \]
+					</div>
+					<div class="row relative">
+						<div class="graphWrapper">
+							<div id="varyingZGraph" class="jxgbox">
+							</div>
+						</div>
+						<div class="z-man"><img src="../../images/man.png" /></div>
+						<div class="y-axis-label varyingZGraph">
+						</div>
+					</div>
+					<div class="row">
+						<div class="x-axis-label varyingZGraph columns small-10 small-offset-2">
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+{% include js.html %}
+<script src="airPuff.js"></script>
