@@ -40,11 +40,12 @@
     <ul class="dropdown menu" data-dropdown-menu>
       <li class="has-submenu"><a href="#">Help</a>
         <ul class="submenu menu vertical help" data-submenu>
-          <li>{{ page.url }}</li>
-          <li> <a href="./" title="Reset Values" >Reset Values</a></li>
-          <li> <a href="additional.pdf" title="Additional Problems" >Additional Problems</a></li>
-          <li> <a href="background.pdf" title="Background" >Background</a></li>
-          <li> <a href="explanation.pdf" title="Explanation of Sample Problems" >Explanation of Sample Problem</a></li>
+          {% unless page.url == '/' %}
+            <li> <a href="./" title="Reset Values" >Reset Values</a></li>
+            <li> <a href="additional.pdf" title="Additional Problems" >Additional Problems</a></li>
+            <li> <a href="background.pdf" title="Background" >Background</a></li>
+            <li> <a href="explanation.pdf" title="Explanation of Sample Problems" >Explanation of Sample Problem</a></li>
+          {% endif %}
           {% if page.url contains 'streeter-phelps' %}
             <li> <a href="/fate/useful/do-table.pdf" title="DO Solubility Table">DO Solubility Table</a></li>
             <li> <a href="/fate/useful/k2-table.pdf" title="Reaeration Rate Constants">Re-aeration Rate Constants</a></li>
