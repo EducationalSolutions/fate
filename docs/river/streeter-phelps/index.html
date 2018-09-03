@@ -1,12 +1,13 @@
-<?php 
-$title = 'Streeter-Phelps Equation / DO Sag Curve';
-require_once('../../includes/header.php');
-?>
+---
+layout: default
+title: Step Release into a Stream
+---
+
 <div class="streeterPhelps">
 <div class="row">
 	<div class="small-12 small columns">
 		<h1>
-			<?php print $title; ?>
+			<h1>{{ page.title }}</h1>
 		</h1>
 	</div>
 </div>
@@ -23,23 +24,23 @@ require_once('../../includes/header.php');
 			<fieldset class="fieldset">
 				<legend> Step 1: Enter problem statement</legend>
 				<label for="k1" class="required">BOD rate constant<br />
-				k' = 
+				k' =
 				<input type="text" id="k1" name="k1" value="0.34" size="5" maxlength="128" class="k1 required" required="required" aria-required="true" />
-				/day</label> 
+				/day</label>
 				<label for="k2" class="required">Rearation rate constant<br />
-				k'2 = 
+				k'2 =
 				<input type="text" id="k2" name="k2" value="0.65" size="5" maxlength="128" class="k2 required" required="required" aria-required="true" />
 				/day</label>
 			</fieldset>
 			<fieldset class="fieldset">
 				<legend> Step 2: Enter or calculate the longitudinal dispersion coefficient, E</legend>
 				<label for="streamTemp" class="streamTemp required">Stream temperature <br />
-				Temp = 
+				Temp =
 				<input type="text" id="streamTemp" name="streamTemp" value="15" size="5" maxlength="128" class="streamTemp required" required="required" aria-required="true" /> &deg;C (in whole degrees C [0-30])
-				</label> 
+				</label>
 				<div class="saturation-concentration">Saturation concentration: <strong></strong> mg O<sub>2</sub>/L</div>
-				<label for="doPercent" class="doPercent required">DO concentration at 
-				<input type="text" id="doPercent" name="doPercent" value="100" size="5" maxlength="128" class="doPercent required" required="required" aria-required="true" /> % saturation</label> 
+				<label for="doPercent" class="doPercent required">DO concentration at
+				<input type="text" id="doPercent" name="doPercent" value="100" size="5" maxlength="128" class="doPercent required" required="required" aria-required="true" /> % saturation</label>
 				<div class="do">Results in a DO of: <strong></strong> mg O<sub>2</sub>/L</div>
 				\[DO of stream = \frac{\% Saturation}{100}Saturation\ Concentration\]
 			</fieldset>
@@ -75,10 +76,10 @@ require_once('../../includes/header.php');
 					<td><label for="wasteBOD5"><input type="text" name="wasteBOD5" class="wasteBOD5" value="180" size="4" /> mg/L</label></td>
 				</tr>
 				</tbody>
-				</table>	 
-		</fieldset>		
+				</table>
+		</fieldset>
 		<fieldset class="fieldset">
-			<legend>Calculations</legend> 
+			<legend>Calculations</legend>
 			<table class="verify">
 				<thead>
 					<tr>
@@ -118,7 +119,7 @@ require_once('../../includes/header.php');
 		</fieldset>
 		<fieldset class="fieldset">
 				<legend> Step 4: Correct the BOD-rate constant and reaeraation-rate constant to the temperature of the mixture</legend>
-				<table class="verify">			
+				<table class="verify">
 				<tbody>
 					<tr>
 						<th scope="row">Mixture temperature</th>
@@ -144,14 +145,14 @@ require_once('../../includes/header.php');
 				</table>
 				<label for="k2Coefficient" class="k2Coefficient required">k'2 temperature Coefficient <br />
 				<input type="text" id="k2Coefficient" name="k2Coefficient" value="1.024" size="5" maxlength="128" class="k2Coefficient required" required="required" aria-required="true" /> corrected for temperature = <strong></strong> /day
-				</label> 
+				</label>
 				<label for="k1Coefficient" class="k1Coefficient required">k' temperature Coefficient <br />
 				<input type="text" id="k1Coefficient" name="k1Coefficient" value="1.135" size="5" maxlength="128" class="k1Coefficient required" required="required" aria-required="true" /> corrected for temperature = <strong></strong> /day
 				</label>
 		</fieldset>
 		<fieldset class="fieldset">
 				<legend> Step 5: Data for the determination of critical points in the stream</legend>
-				<table class="verify">				
+				<table class="verify">
 				<tbody>
 					<tr>
 						<th scope="row">Stream Temperature</th>
@@ -178,15 +179,15 @@ require_once('../../includes/header.php');
 						<td class="saturation-concentration"></td>
 						<td>mg O<sub>2</sub>/L</td>
 					</tr>
-					
+
 				</tbody>
 				</table>
 				<label for="v" class="v required">Stream velocity <br />
 				V = <input type="text" id="v" name="v" value="4.83" size="5" maxlength="128" class="v required" required="required" aria-required="true" /> km/hr
-				</label> 
+				</label>
 		</fieldset>
 		<fieldset class="fieldset">
-			<legend>Calculation of critical points</legend> 
+			<legend>Calculation of critical points</legend>
 			<table class="verify">
 				<thead>
 					<tr>
@@ -239,18 +240,18 @@ require_once('../../includes/header.php');
 		<fieldset class="fieldset">
 			<legend>Calculate DO at a given distance below the input</legend> <label for="concentrationDistance" class="concentrationDistance required">Distance downstream<br />
 			<input type="text" id="concentrationDistance" name="concentrationDistance" value="0" size="5" maxlength="128" class="concentrationDistance required" required="required" aria-required="true" />
-			Km </label> 
+			Km </label>
 			<p>
-				Result: <strong class="calc-result"></strong> mg O<sub>2</sub>/L 
+				Result: <strong class="calc-result"></strong> mg O<sub>2</sub>/L
 			</p>
 			<p>
 			\[DO = \frac{\%\ Saturation}{100} * Saturation\ Concentration - (\frac{k'BOD_L}{k'_2 - k'}(e^{k' ({x / v})}-e^{k'_2 ({x / v})}) + D_0 * e^{k'_2 ({x / v})}) \]
 			</p>
 		</fieldset>
 		<fieldset class="fieldset">
-			<legend> Graph Data</legend> 
+			<legend> Graph Data</legend>
 			<div class="equation">
-				\[DO = \frac{\%\ Saturation}{100} * Saturation\ Concentration - (\frac{k'BOD_L}{k'_2 - k'}(e^{k' ({x / v})}-e^{k'_2 ({x / v})}) + D_0 * e^{k'_2 ({x / v})}) \] 
+				\[DO = \frac{\%\ Saturation}{100} * Saturation\ Concentration - (\frac{k'BOD_L}{k'_2 - k'}(e^{k' ({x / v})}-e^{k'_2 ({x / v})}) + D_0 * e^{k'_2 ({x / v})}) \]
 			</div>
 			<div class="row relative">
 				<div class="graphWrapper">
@@ -262,15 +263,11 @@ require_once('../../includes/header.php');
 			<div class="x-axis-label columns small-10 small-offset-2"></div>
 			</div>
 		</fieldset>
-		
+
 	</form>
 </div>
 </div>
 </div>
-<?php
-require_once('../../includes/js.php');
-?>
+{% include js.html %}
 
 <script src="streeterPhelps.js"></script>
-<?php
-require_once('../../includes/footer.php');
