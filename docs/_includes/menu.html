@@ -45,15 +45,14 @@
           <li> <a href="background.pdf" title="Background" >Background</a></li>
           <li> <a href="explanation.pdf" title="Explanation of Sample Problems" >Explanation of Sample Problem</a></li>
           <li>{{ page.url }}</li>
-          {% case page.url %}
-            {% when contains 'streeter_phelps' %}
-              <li> <a href="/fate/useful/do-table.pdf" title="DO Solubility Table">DO Solubility Table</a></li>
-              <li> <a href="/fate/useful/k2-table.pdf" title="Reaeration Rate Constants">Re-aeration Rate Constants</a></li>
-            {% when contains 'river_pulse' or 'river_step' or 'lake_pulse' or 'lake_step'  or 'groundwater_pulse' or 'groundwater_step' %}
+          {% if page.url contains 'streeter-phelps' %}
 
-              <li> <a href="/fate/useful/decay-rates.pdf" title="Rate Constants">Rate Constants</a></li>
-              <li> <a href="/fate/useful/unit-conversions.pdf" title="Unit Conversions">Unit Conversions</a></li>
-          {% endcase %}
+            <li> <a href="/fate/useful/do-table.pdf" title="DO Solubility Table">DO Solubility Table</a></li>
+            <li> <a href="/fate/useful/k2-table.pdf" title="Reaeration Rate Constants">Re-aeration Rate Constants</a></li>
+          {% elsif contains 'river' or 'lake' or 'groundwater' %}
+            <li> <a href="/fate/useful/decay-rates.pdf" title="Rate Constants">Rate Constants</a></li>
+            <li> <a href="/fate/useful/unit-conversions.pdf" title="Unit Conversions">Unit Conversions</a></li>
+          {% endif %}
         </ul>
       </li>
     </ul>
