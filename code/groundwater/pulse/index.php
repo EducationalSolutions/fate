@@ -1,0 +1,228 @@
+<?php 
+$title = 'Instantaneous Release into Groundwater';
+require_once('../../includes/header.php');
+?>
+<div class="groundwaterPulse">
+	<div class="row">
+		<div class="small-12 small columns">
+			<h1>
+<?php print $title; ?>
+			</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-11 small columns">
+			<p>
+				This section of Fate allows you to map the passage of a pollutant in groundwater.  It models the migration of the pollutant through an aquifer over time or can determine how long it will take a pollutant to reach a given point, such as a river.  In this situation, the pollutant may come from a spill or other one-time release such as a tanker truck accident.
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+			<form class="groundwater-pulse-form fate-form" action="../../groundwater/pulse/" method="get" id="groundwater-pulse-form" accept-charset="UTF-8">
+				<fieldset class="fieldset">
+					<legend> Step 1</legend> Manually convert input data to metric units: meters, kilograms, or curies. 
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Step 2: Calculate the retardation factor from the distribution coefficient</legend> 
+					<label for="bulkDensity" class="required">Bulk Density <br />
+					&rho;<sub>b</sub> = 
+					<input type="text" id="bulkDensity" name="bulkDensity" value="1.6" size="5" maxlength="128" class="bulkDensity required" required="required" aria-required="true" />
+					g/cm<sup>3</sup></label>
+					<label for="kd" class="required">Distribution Coefficient<br />
+					K<sub>d</sub> = 
+					<input type="text" id="kd" name="kd" value="2.5" size="5" maxlength="128" class="kd required" required="required" aria-required="true" />
+					cm<sup>3</sup>/g</label>
+					<label for="n" class="n required">Porosity <br />
+					n = 
+					<input type="text" id="n" name="n" value="0.3" size="5" maxlength="128" class="n required" required="required" aria-required="true" />
+					(unitless) </label>
+					<label for="r" class="r verify">Retardation factor <br />
+					R = 
+					<strong class="r"></strong>
+					(unitless) </label>
+					\[ R = 1 + \frac{&rho;_bK_b}{n}\]
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Step 3: Correct for void volume of spill site</legend> 
+					<label for="a" class="a required">Cross-sectional area <br />
+					A = 
+					<input type="text" id="a" name="a" value="50" size="5" maxlength="128" class="a required" required="required" aria-required="true" />
+					m<sup>2</sup> </label>
+					<label for="n" class="n verify">Porosity<br />
+					n = <strong class="n"></strong> (unitless)
+					</label>
+					<label for="vv" class="vv verify">Void volume<br />
+					VV = <strong class="vv"></strong> m<sup>2</sup>
+					</label>
+					\[ VV= A * n\]
+					
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Step 4: Calculate the total mass of the pollutant spilled</legend> 
+					<label for="massType" class="massType"> 
+						Pollutant is a <select id="massType" name="massType" class="massType">
+							<option value="mg" selected="selected">Compound</option>
+							<option value="mCi">Radio-nuclide</option>
+						</select>
+					</label>
+					<div class="massType-kg">
+					<label for="vol" class="vol required">Volume of solution spilled<br />
+					V = 
+					<input type="text" id="vol" name="vol" value="100" size="5" maxlength="128" class="vol required" required="required" aria-required="true" />
+					m<sup>3</sup> 
+					</label>
+					<label for="c" class="c required">Concentration of solution<br />
+					C = 
+					<input type="text" id="c" name="c" value="1000" size="5" maxlength="128" class="c required" required="required" aria-required="true" />
+					mg/m<sup>3</sup> 
+					</label>
+					<label for="mtkg" class="mtkg verify">Total mass of pollutant<br />
+					M<sub>T</sub> = <strong class="mtkg"></strong> mg
+					</label>
+					\[ M_T = V * C\]
+					</div>
+					<div class="massType-ci">
+					<label for="mtci" class="mtci required">Total mass of pollutant<br />
+					M<sub>T</sub> = 
+					<input type="text" id="mtci" name="mtci" value="100000" size="5" maxlength="128" class="mtci required" required="required" aria-required="true" />
+					mCi 
+					</label>
+					</div>
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Step 5: Calculate first order rate constant</legend> 
+					<div class="row">
+					<div class="medium-5 columns">
+					<label for="halfLife" class="halfLife required">Half-Life<br />
+					<input type="text" id="halfLife" name="halfLife" value="1" size="5" maxlength="128" class="halfLife required" required="required" aria-required="true" />
+					</label> 
+					<label for="halfLifeIncrement" class="halfLifeIncrement"> 
+					<select id="halfLifeIncrement" name="halfLifeIncrement" class="halfLifeIncrement">
+						<option value="year" selected="selected" />Years</option>
+						<option value="day">Days</option>
+						<option value="hour">Hours</option>
+						<option value="minute">Minutes</option>
+					</select>
+					</label> 
+					</div>
+					<div class="medium-4 columns end">
+						<!-- \[ k = -\frac{ln(0.5)}{t_1 v_2} \] -->
+						\[ln(\frac{C}{C_o}) = -kt_\frac{1}{2} \]
+					</div>
+					</div>
+					<p class="verify">k = <strong class="k"></strong>/year
+					</p>
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Step 6: Enter velocity and dispersion coefficient</legend> 
+					<label for="v" class="required">Groundwater velocity <br />
+					v = 
+					<input type="text" id="v" name="v" value="10" size="5" maxlength="128" class="v required" required="required" aria-required="true" />
+					m/year</label>
+					<label for="d" class="required">Dispersion Coefficient<br />
+					d = 
+					<input type="text" id="d" name="d" value="10" size="5" maxlength="128" class="d required" required="required" aria-required="true" />
+					m<sup>2</sup>/year</label>
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Step 7: Verify data</legend> 
+					<table class="verify">
+						<thead>
+							<tr>
+								<th>Data Point</th>
+								<th>Value</th>
+								<th>Unit</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Void volume (VV)</td>
+								<td class="vv"></td>
+								<td>m<sup>2</sup></td>
+							</tr>
+							<tr>
+								<td>Retardation factor (R)</td>
+								<td class="r"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Mass of contaminent (M<sub>T</sub>)</td>
+								<td class="mt"></td>
+								<td class="massType"></td>
+							</tr>
+							<tr>
+								<td>First Order Rate Constant (k)</td>
+								<td class="k"></td>
+								<td>/year</td>
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
+				<fieldset class="fieldset">
+					<legend> Point calculation</legend> 
+					<label for="concentrationDistance" class="concentrationDistance required">Distance <br />
+					<input type="text" id="concentrationDistance" name="concentrationDistance" value="10" size="5" maxlength="128" class="concentrationDistance required" required="required" aria-required="true" />
+					m </label> 
+					<label for="concentrationTime" class="concentrationTime required">Time <br />
+					<input type="text" id="concentrationTime" name="concentration time" value="10" size="5" maxlength="128" class="concentrationTime required" required="required" aria-required="true" />
+					Years </label> 
+					<p class="verify">
+						Result: <strong class="calc-result"></strong> 
+					</p>
+				</fieldset>
+				<fieldset class="fieldset varyingTimeGraphFieldset">
+					<legend> Graph varying time</legend> <label for="graphDistanceVaryTime" class="graphDistanceVaryTime required">Distance (fixed) <br />
+					<input type="text" id="graphDistanceVaryTime" name="graphDistanceVaryTime" value="10" size="5" maxlength="128" class="graphDistanceVaryTime required" required="required" aria-required="true" />
+					meters </label> 
+					<div class="equation">
+						\[C_{(x,t)} = \frac{M}{A\sqrt{4\pi \frac{D}{R}t}}e^{-\frac{(x-\frac{v}{R}t)^2}{4\frac{D}{R}t}-kt}\] 
+					</div>
+					<div class="row relative">
+						<div class="graphWrapper">
+							<div id="varyingTimeGraph" class="jxgbox">
+							</div>
+						</div>
+						<div class="y-axis-label varyingTimeGraph">
+						</div>
+					</div>
+					<div class="row">
+						<div class="x-axis-label varyingTimeGraph columns small-10 small-offset-2">
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset class="fieldset varyingDistanceGraphFieldset">
+				<legend> Graph varying distance</legend> <label for="graphTimeVaryDistance" class="graphTimeVaryDistance required">Time <br />
+				<input type="text" id="graphTimeVaryDistance" name="graphTimeVaryDistance" value="10" size="5" maxlength="128" class="graphTimeVaryDistance required" required="required" aria-required="true" />
+				Years </label> 
+				<div class="equation">
+					\[C_{(x,t)} = \frac{M}{A\sqrt{4\pi \frac{D}{R}t}}e^{-\frac{(x-\frac{v}{R}t)^2}{4\frac{D}{R}t}-kt}\] 
+				</div>
+				<div class="row relative">
+					<div class="graphWrapper">
+						<div id="varyingDistanceGraph" class="jxgbox">
+						</div>
+					</div>
+					<div class="y-axis-label varyingDistanceGraph">
+					</div>
+				</div>
+				<div class="row">
+					<div class="x-axis-label varyingDistanceGraph columns small-10 small-offset-2">
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		
+</form>
+</div>
+</div>
+</div>
+
+<?php
+require_once('../../includes/js.php');
+?>
+
+<script src="groundwaterPulse.js"></script>
+<?php
+require_once('../../includes/footer.php');
