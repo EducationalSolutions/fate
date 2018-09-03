@@ -1,4 +1,4 @@
-<?php 
+<?php
 $title = 'Instantaneous Release into the Air';
 require_once('../../includes/header.php');
 ?>
@@ -21,26 +21,26 @@ require_once('../../includes/header.php');
 		<div class="small-12 columns">
 			<form class="air-puff-form fate-form" action="../../air/puff/" method="get" id="air-puff-form" accept-charset="UTF-8">
 				<fieldset class="fieldset">
-					<legend> Step 1</legend> Manually convert input data to metric units: meters, grams, and seconds. 
+					<legend> Step 1</legend> Manually convert input data to metric units: meters, grams, and seconds.
 				</fieldset>
 				<fieldset class="fieldset">
-					<legend> Step 2: Enter conditions</legend>			
+					<legend> Step 2: Enter conditions</legend>
 					<label for="qt" class="qt required">Source mass<br />
-					Q<sub>T</sub> = 
+					Q<sub>T</sub> =
 					<input type="text" id="qt" name="qt" value="2000" size="9" maxlength="128" class="qt required" required="required" aria-required="true" />
 					g</label>
 					<label for="u" class="u required">Wind speed<br />
-					&umacr; = 
+					&umacr; =
 					<input type="text" id="u" name="u" value="4" size="9" maxlength="128" class="u required" required="required" aria-required="true" />
 					m/sec</label>
 					<label for="hr" class="hr required">Height of release<br />
-					H<sub>r</sub> = 
+					H<sub>r</sub> =
 					<input type="text" id="hr" name="hr" value="30" size="9" maxlength="128" class="hr required" required="required" aria-required="true" />
 					m</label>
-					
+
 				</fieldset>
 				<fieldset class="fieldset">
-					<legend> Step 3: Choose atmospheric stability</legend> 
+					<legend> Step 3: Choose atmospheric stability</legend>
 						<div class="row">
 							<div class="columns small-6">
 								<label for="as" class="as required">Atmospheric stability<br />
@@ -52,7 +52,7 @@ require_once('../../includes/header.php');
 										<option value="e">E</option>
 										<option value="f">F</option>
 									</select>
-								</label> 
+								</label>
 							</div>
 							<div class="columns small-6">
 								<p>
@@ -123,18 +123,18 @@ require_once('../../includes/header.php');
 					</table>
 				</fieldset>
 				<fieldset class="fieldset">
-					<legend> Step 4: Enter the dispersion coefficients</legend> 
-					<label for="dist" class="dist required"> 
-					X = 
+					<legend> Step 4: Enter the dispersion coefficients</legend>
+					<label for="dist" class="dist required">
+					X =
 					<input type="text" id="dist" name="dist" value="10" size="5" maxlength="128" class="dist required" required="required" aria-required="true" /> m
 					</label>
-					<label for="dx" class="dx required"> 
-					&sigma;<sub>x</sub> = 
+					<label for="dx" class="dx required">
+					&sigma;<sub>x</sub> =
 					<input type="text" id="dx" name="dx" value="0.7517" size="5" maxlength="128" class="dx required" required="required" aria-required="true" /> m
 					(&sigma;<sub>x</sub> = &sigma;<sub>y</sub>)
 					</label>
-					<label for="dz" class="dz required"> 
-					&sigma;<sub>z</sub> = 
+					<label for="dz" class="dz required">
+					&sigma;<sub>z</sub> =
 					<input type="text" id="dz" name="dz" value="0.4990" size="5" maxlength="128" class="dz required" required="required" aria-required="true" /> m
 					</label>
 					<div class="row relative">
@@ -145,7 +145,7 @@ require_once('../../includes/header.php');
 							</div>
 								<div class="y-axis-label SXGraph"></div>
 						</div>
-						
+
 						<div class="columns medium-6">
 						  <h4 class="text-center">Vertical</h4>
 							<div class="graphWrapper">
@@ -179,7 +179,7 @@ require_once('../../includes/header.php');
 					<legend> Concentration calculations</legend>
 					<div class="row">
 						<div class="columns small-6">
-							<p class="verify">Time since release: <strong class="t"></strong> seconds					
+							<p class="verify">Time since release: <strong class="t"></strong> seconds
 							</p>
 						</div>
 						<div class="columns small-6">
@@ -188,11 +188,11 @@ require_once('../../includes/header.php');
 					</div>
 					<label for="concentrationY" class="concentrationY required">Distance left or right of source <br />
 					Y = <input type="text" id="concentrationY" name="concentrationY" value="1.5" size="5" maxlength="128" class="concentrationY required" required="required" aria-required="true" />m
-					</label> 
+					</label>
 					<label for="concentrationZ" class="concentrationZ required">Distance up or down from source <br />
 					Z = <input type="text" id="concentrationZ" name="concentrationZ" value="30" size="5" maxlength="128" class="concentrationZ required" required="required" aria-required="true" />m
-					</label> 
-					
+					</label>
+
 					<p>
 						Result: <strong class="calc-result"></strong> g/m<sup>3</sup>
 					</p>
@@ -205,14 +205,14 @@ require_once('../../includes/header.php');
 				</fieldset>
 				-->
 				<fieldset class="fieldset">
-					<legend> Graph varying distance in Y</legend> 
+					<legend> Graph varying distance in Y</legend>
 					<label for="graphZ" class="graphZ required">Distance up or down from source <br />
 					Z = <input type="text" id="graphZ" name="graphZ" value="30" size="5" maxlength="128" class="graphZ required" required="required" aria-required="true" />m
-					</label> 
+					</label>
 					<div class="equation">
-						\[C_{(x,y,z,t)} = \frac{Q_T}{(2\pi)^{\frac{3}{2}}\sigma_x\sigma_y\sigma_z}e^{(-\frac{1}{2}(\frac{y}{\sigma_y})^2)}(e^{(-\frac{1}{2}(\frac{z-H_r}{\sigma_z})^2)}+e^{(-\frac{1}{2}(\frac{z+H_r}{\sigma_z})^2)}) \] 
+						\[C_{(x,y,z,t)} = \frac{Q_T}{(2\pi)^{\frac{3}{2}}\sigma_x\sigma_y\sigma_z}e^{(-\frac{1}{2}(\frac{y}{\sigma_y})^2)}(e^{(-\frac{1}{2}(\frac{z-H_r}{\sigma_z})^2)}+e^{(-\frac{1}{2}(\frac{z+H_r}{\sigma_z})^2)}) \]
 					</div>
-					
+
 					<div class="row relative">
 						<div class="graphWrapper">
 							<div id="varyingYGraph" class="jxgbox">
@@ -229,12 +229,12 @@ require_once('../../includes/header.php');
 				</div>
 			</fieldset>
 			<fieldset class="fieldset">
-					<legend> Graph varying distance in Z</legend> 
+					<legend> Graph varying distance in Z</legend>
 					<label for="graphY" class="graphY required">Distance left or right of source <br />
 					Y = <input type="text" id="graphY" name="graphY" value="1.5" size="5" maxlength="128" class="graphY required" required="required" aria-required="true" />m
-					</label> 
+					</label>
 					<div class="equation">
-						\[C_{(x,y,z,t)} = \frac{Q_T}{(2\pi)^{\frac{3}{2}}\sigma_x\sigma_y\sigma_z}e^{(-\frac{1}{2}(\frac{y}{\sigma_y})^2)}(e^{(-\frac{1}{2}(\frac{z-H_r}{\sigma_z})^2)}+e^{(-\frac{1}{2}(\frac{z+H_r}{\sigma_z})^2)}) \] 
+						\[C_{(x,y,z,t)} = \frac{Q_T}{(2\pi)^{\frac{3}{2}}\sigma_x\sigma_y\sigma_z}e^{(-\frac{1}{2}(\frac{y}{\sigma_y})^2)}(e^{(-\frac{1}{2}(\frac{z-H_r}{\sigma_z})^2)}+e^{(-\frac{1}{2}(\frac{z+H_r}{\sigma_z})^2)}) \]
 					</div>
 					<div class="row relative">
 						<div class="graphWrapper">

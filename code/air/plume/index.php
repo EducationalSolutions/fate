@@ -1,4 +1,4 @@
-<?php 
+<?php
 $title = 'Continuous Release into the Air';
 require_once('../../includes/header.php');
 ?>
@@ -21,11 +21,11 @@ require_once('../../includes/header.php');
 		<div class="small-12 columns">
 			<form class="air-plume-form fate-form" action="../../air/plume/" method="get" id="air-plume-form" accept-charset="UTF-8">
 				<fieldset class="fieldset">
-					<legend> Step 1</legend> Manually convert input data to metric units: meters, grams, and seconds. 
+					<legend> Step 1</legend> Manually convert input data to metric units: meters, grams, and seconds.
 				</fieldset>
 				<fieldset class="fieldset">
 					<legend> Step 2: Enter or calculate the release height</legend>
-					<label for="hrMethod" class="hrMethod"> 
+					<label for="hrMethod" class="hrMethod">
 					<select id="hrMethod" name="hrMethod" class="hrMethod">
 						<option value="calculated" selected="selected">Use calculated release height</option>
 						<option value="entered">Use entered release height</option>
@@ -33,38 +33,38 @@ require_once('../../includes/header.php');
 					</label>
 					<div class="hr-entered">
 						<label for="hrEntered" class="hrEntered required">Height of release<br />
-						H<sub>r</sub> = 
+						H<sub>r</sub> =
 						<input type="text" id="hrEntered" name="hrEntered" value="30" size="9" maxlength="128" class="hrEntered required" required="required" aria-required="true" />
 						m</label>
 					</div>
 					<div class="hr-calculated">
 						<p>Use the calculated value if the pollutant temperature is higher than the air temperature.</p>
 						<label for="hri" class="hri required">Initial release height<br />
-						H<sub>r</sub> = 
+						H<sub>r</sub> =
 						<input type="text" id="hri" name="hri" value="30" size="9" maxlength="128" class="hri required" required="required" aria-required="true" />
 						m</label>
 						<label for="us" class="us required">Stack exit velocity<br />
-						&umacr;<sub>s</sub> = 
+						&umacr;<sub>s</sub> =
 						<input type="text" id="us" name="us" value="0.8" size="9" maxlength="128" class="us irequired" required="required" aria-required="true" />
 						m/sec</label>
 						<label class="u required">Wind speed<br />
-						&umacr; = 
+						&umacr; =
 						<input type="text" id="u" name="u" value="0.8" size="9" maxlength="128" class="u required" required="required" aria-required="true" />
 						m/sec</label>
 						<label for="d" class="d required">Inside stack diameter<br />
-						d = 
+						d =
 						<input type="text" id="d" name="d" value="0.8" size="9" maxlength="128" class="d required" required="required" aria-required="true" />
 						m</label>
 						<label for="p" class="p required">Atmospheric pressure<br />
-						P = 
+						P =
 						<input type="text" id="p" name="p" value="1010" size="9" maxlength="128" class="p required" required="required" aria-required="true" />
 						mbar</label>
 						<label for="ts" class="ts required">Stack gas temperature<br />
-						T<sub>s</sub> = 
+						T<sub>s</sub> =
 						<input type="text" id="ts" name="ts" value="285" size="9" maxlength="128" class="ts required" required="required" aria-required="true" />
 						°K</label>
 						<label for="ta" class="ta required">Air temperature<br />
-						T<sub>a</sub> = 
+						T<sub>a</sub> =
 						<input type="text" id="ta" name="ta" value="280" size="9" maxlength="128" class="ta required" required="required" aria-required="true" />
 						°K</label>
 						<label class="verify">Height of release H<sub>r</sub> + &Delta;H<sub>r</sub> <strong class="hrCalculated"></strong> m</label>
@@ -72,19 +72,19 @@ require_once('../../includes/header.php');
 					</div>
 				</fieldset>
 				<fieldset class="fieldset">
-					<legend> Step 3: Enter the remaining data</legend> 
+					<legend> Step 3: Enter the remaining data</legend>
 					<label for="qm" class="q required">Source flow<br />
-					Q<sub>m</sub> = 
+					Q<sub>m</sub> =
 					<input type="text" id="qm" name="qm" value="20" size="9" maxlength="128" class="qm required" required="required" aria-required="true" />
 					g/s</label>
 					<label class="u required">Wind speed<br />
-					&umacr; = 
+					&umacr; =
 					<input type="text" id="u" name="u" value="0.8" size="9" maxlength="128" class="u required" required="required" aria-required="true" />
 					m/sec</label>
-					
+
 				</fieldset>
 				<fieldset class="fieldset">
-					<legend> Step 4: Choose atmospheric stability</legend> 
+					<legend> Step 4: Choose atmospheric stability</legend>
 						<label for="as" class="as required">Atmospheric stability<br />
 							<select id="as" name="as" class="as">
 								<option value="a" selected="selected" />
@@ -95,7 +95,7 @@ require_once('../../includes/header.php');
 								<option value="e">E</option>
 								<option value="f">F</option>
 							</select>
-						</label> 
+						</label>
 					<table>
 					<thead>
 						<tr>
@@ -157,18 +157,18 @@ require_once('../../includes/header.php');
 					</table>
 				</fieldset>
 				<fieldset class="fieldset">
-					<legend> Step 5: Enter the dispersion coefficients</legend> 
-					<label for="dist" class="dist required"> 
-					X = 
+					<legend> Step 5: Enter the dispersion coefficients</legend>
+					<label for="dist" class="dist required">
+					X =
 					<input type="text" id="dist" name="dist" value="1.5" size="5" maxlength="128" class="dist required" required="required" aria-required="true" /> km
 					</label>
-					<label for="dx" class="dx required"> 
-					&sigma;<sub>x</sub> = 
+					<label for="dx" class="dx required">
+					&sigma;<sub>x</sub> =
 					<input type="text" id="dx" name="dx" value="298.2" size="5" maxlength="128" class="dx required" required="required" aria-required="true" /> m
 					(&sigma;<sub>x</sub> = &sigma;<sub>y</sub>)
 					</label>
-					<label for="dz" class="dz required"> 
-					&sigma;<sub>z</sub> = 
+					<label for="dz" class="dz required">
+					&sigma;<sub>z</sub> =
 					<input type="text" id="dz" name="dx" value="1071" size="5" maxlength="128" class="dz required" required="required" aria-required="true" /> m
 					</label>
 					<div class="row relative">
@@ -179,7 +179,7 @@ require_once('../../includes/header.php');
 							</div>
 								<div class="y-axis-label SXGraph"></div>
 						</div>
-						
+
 						<div class="columns medium-6">
 						  <h4 class="text-center">Vertical</h4>
 							<div class="graphWrapper">
@@ -222,27 +222,27 @@ require_once('../../includes/header.php');
 					</div>
 				</fieldset>
 				<fieldset class="fieldset">
-					<legend> Concentration calculations</legend> 
+					<legend> Concentration calculations</legend>
 					<label for="concentrationY" class="concentrationY required">Distance left or right of source <br />
 					Y = <input type="text" id="concentrationY" name="concentrationY" value="1.5" size="5" maxlength="128" class="concentrationY required" required="required" aria-required="true" />m
-					</label> 
+					</label>
 					<label for="concentrationZ" class="concentrationZ required">Distance up or down from source <br />
 					Z = <input type="text" id="concentrationZ" name="concentrationZ" value="4" size="5" maxlength="128" class="concentrationZ required" required="required" aria-required="true" />m
-					</label> 
-					
+					</label>
+
 					<p>
 						Result: <strong class="calc-result"></strong> g/m<sup>3</sup>
 					</p>
 				</fieldset>
 				<fieldset class="fieldset">
-					<legend> Graph varying distance in Y</legend> 
+					<legend> Graph varying distance in Y</legend>
 					<label for="graphZ" class="graphZ required">Distance up or down from source <br />
 					Z = <input type="text" id="graphZ" name="graphZ" value="4" size="5" maxlength="128" class="graphZ required" required="required" aria-required="true" />m
-					</label> 
+					</label>
 					<div class="equation">
-						\[C_{(x,y,z)} = \frac{Q_m}{2\pi\sigma_y\sigma_zu}e^{(-\frac{1}{2}(\frac{y}{\sigma_y})^2)}(e^{(-\frac{1}{2}(\frac{z-H_r}{\sigma_z})^2)}+e^{(-\frac{1}{2}(\frac{z+H_r}{\sigma_z})^2)}) \] 
+						\[C_{(x,y,z)} = \frac{Q_m}{2\pi\sigma_y\sigma_zu}e^{(-\frac{1}{2}(\frac{y}{\sigma_y})^2)}(e^{(-\frac{1}{2}(\frac{z-H_r}{\sigma_z})^2)}+e^{(-\frac{1}{2}(\frac{z+H_r}{\sigma_z})^2)}) \]
 					</div>
-					
+
 					<div class="row relative">
 						<div class="graphWrapper">
 							<div id="varyingYGraph" class="jxgbox">
@@ -259,12 +259,12 @@ require_once('../../includes/header.php');
 				</div>
 			</fieldset>
 			<fieldset class="fieldset">
-					<legend> Graph varying distance in Z</legend> 
+					<legend> Graph varying distance in Z</legend>
 					<label for="graphY" class="graphY required">Distance left or right of source <br />
 					Y = <input type="text" id="graphY" name="graphY" value="1.5" size="5" maxlength="128" class="graphY required" required="required" aria-required="true" />m
-					</label> 
+					</label>
 					<div class="equation">
-						\[C_{(x,y,z)} = \frac{Q_m}{2\pi\sigma_y\sigma_zu}e^{(-\frac{1}{2}(\frac{y}{\sigma_y})^2)}(e^{(-\frac{1}{2}(\frac{z-H_r}{\sigma_z})^2)}+e^{(-\frac{1}{2}(\frac{z+H_r}{\sigma_z})^2)}) \] 
+						\[C_{(x,y,z)} = \frac{Q_m}{2\pi\sigma_y\sigma_zu}e^{(-\frac{1}{2}(\frac{y}{\sigma_y})^2)}(e^{(-\frac{1}{2}(\frac{z-H_r}{\sigma_z})^2)}+e^{(-\frac{1}{2}(\frac{z+H_r}{\sigma_z})^2)}) \]
 					</div>
 					<div class="row relative">
 						<div class="graphWrapper">
