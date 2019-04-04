@@ -25,10 +25,10 @@
 		init: function() {
 			var $plugin = this;
 			$plugin._loadFormValues();
-			
+
 			//$plugin._calculated['e'] = $plugin._calculateE();
 			//$('span.eCalculated').text(Math.round($plugin._calculated['e'] * 100) / 100);
-						
+
 			// determine what values we're actually using
 			$plugin._setActiveValues();
 			// calculate lots of things
@@ -49,8 +49,8 @@
 			$('.saturation-concentration strong, .verify .saturation-concentration').text($plugin._activeValues['saturation-concentration']);
 			$('.do strong, .verify .do').text($plugin._activeValues['do']);
 			$('.streamTemp strong, .verify .streamTemp').text($plugin._activeValues['streamTemp']);
-			
-			
+
+
 			$('.verify .eqTemp').text($plugin._formatForDisplay($plugin._activeValues['eqTemp']));
 			$('.verify .do0').text($plugin._formatForDisplay($plugin._activeValues['do0']));
 			$('.verify .bod5').text($plugin._formatForDisplay($plugin._activeValues['bod5']));
@@ -65,13 +65,13 @@
 			$('.verify .xc').text($plugin._formatForDisplay($plugin._activeValues['xc']));
 			$('.verify .doL').text($plugin._formatForDisplay($plugin._activeValues['doL']));
 			$('.verify .doC').text($plugin._formatForDisplay($plugin._activeValues['doC']));
-			$('.verify .bod5cp').text($plugin._formatForDisplay($plugin._activeValues['bod5cp']));			
-			
+			$('.verify .bod5cp').text($plugin._formatForDisplay($plugin._activeValues['bod5cp']));
+
 			$plugin._updateCalculatedConcentration();
 
 			// plot
 			$plugin._buildVaryTimeGraph();
-			
+
 			// call ourself if something changes
 			$('.river-streeter-phelps-form').off('change', 'input,select');
 			$('.river-streeter-phelps-form').on('change', 'input,select', function() {
@@ -123,11 +123,11 @@
 				case 'entered':
 					$plugin._activeValues['e'] = $plugin._formValues['eEntered'];
 				break;
-			}	
+			}
 		},
 		_calculateDO: function() {
 			var $plugin = this;
-			
+
 			if ($plugin._formValues['streamTemp'] < 0) {
 				$plugin._activeValues['saturation-concentration'] = 14.62;
 				$plugin._formValues['streamTemp'] = 0;
@@ -267,7 +267,7 @@
 			var values = $plugin._activeValues;
 
 			$plugin._activeValues['eqTemp'] = (values['wasteFlow'] * values['wasteTemp'] + values['streamFlow'] * values['streamTemp'])/(values['wasteFlow'] + values['streamFlow']);
-		
+
 		},
 		_calculateInitialDO: function() {
 			var $plugin = this;
@@ -303,7 +303,7 @@
 			var $plugin = this;
 			var values = $plugin._activeValues;
 			$plugin._activeValues['d0'] = values['saturation-concentration'] - values['do0'];
-	
+
 		},
 		_calculateTC: function() {
 			var $plugin = this;
@@ -336,18 +336,18 @@
 		_updateCalculatedConcentration: function() {
 			var $plugin = this;
 			var values = $plugin._activeValues;
-			
+
 			// update the calculated point value
-			var calcResult = $plugin._streeterPhelps({d: values['concentrationDistance'] * 1000});
-			
+			var calcResult = $plugin._streeterPhelps({d: values['concentrationDistance']});
+
 			$('strong.calc-result').text($plugin._formatForDisplay(calcResult));
 		},
 		_buildVaryTimeGraph: function() {
 			var $plugin = this;
 			var values = $plugin._activeValues;
-						
+
 			var Xmax = 10 * values['xc'];
-			
+
 			// highest is always at time 0
 			var Ymax = $plugin._streeterPhelps({d: Xmax});
 			//console.log(Xmax, Ymax);
@@ -358,10 +358,10 @@
 				Xmax, // x max
 				-Ymax * 0.1 // y min
 			];
-	
+
 			//console.log(boundingBox);
 			//var boundingBox = [-1, 0.00001, 6, -0.00001];
-			
+
 			JXG.Options.text.useMathJax = true;
 			$plugin._boards['varyingDistanceBoard'] = JXG.JSXGraph.initBoard('varyingDistanceGraph', {boundingbox: boundingBox, axis:true, showCopyright:false});
 
@@ -384,13 +384,13 @@
 				$plugin._points['varyingDistancePoint'].clearTrace();
 				x = $plugin._formatForDisplay(x);
 				y = $plugin._formatForDisplay(y);
-		
+
 				$plugin._points['varyingDistancePoint'].setLabelText('(' + x + ', ' + y + ')');
 			});
 			// labels
 			$('.y-axis-label').html('Concentration in mg 0<sub>2</sub>/Liter');
 			$('.x-axis-label').html('Distance in Kilometers');
-			
+
 		},
 		_getMouseCoords: function(e, i, boardName) {
 			var $plugin = this;
@@ -405,7 +405,7 @@
 				x = x.toExponential(3);
 			}
 			else {
-				x = Math.round(x * 1000) / 1000; 
+				x = Math.round(x * 1000) / 1000;
 			}
 			return x;
 		},
@@ -413,7 +413,7 @@
 			var $plugin = this;
 			var values = $plugin._activeValues;
 			// d needs to be converted to m
-			d = points['d'];		
+			d = points['d'];
 			return (values['doPercent'] / 100 * values['saturation-concentration']) - (((values['k1Corrected'] * values['bodL']) / (values['k2Corrected'] - values['k1Corrected'])) * (Math.pow(Math.E, (-values['k1Corrected'] * d / (values['v'] * 24))) - Math.pow(Math.E, (-values['k2Corrected'] * d / (values['v'] * 24)))) + values['d0'] * Math.pow(Math.E, (-values['k2Corrected'] * d / (values['v'] * 24))));
 		}
 	};
@@ -435,7 +435,7 @@
 	$.each(query, function(k,v) {
 		$('.' + k).val(v);
 	});
-	
+
 	// then initialize river puls
 	$('.river-streeter-phelps-form').river_streeter_phelps();
 })(jQuery);
